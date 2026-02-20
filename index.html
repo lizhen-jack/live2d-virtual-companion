@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live2D Virtual Companion</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 虚拟人物容器 -->
+        <div class="avatar-container">
+            <canvas id="live2d-canvas"></canvas>
+            <div class="emotion-indicator" id="emotion-indicator">
+                <span id="current-emotion">平静</span>
+            </div>
+        </div>
+
+        <!-- 用户摄像头画面 -->
+        <div class="camera-container">
+            <video id="user-camera" autoplay muted playsinline></video>
+            <div class="camera-label">你的画面</div>
+        </div>
+
+        <!-- 对话区域 -->
+        <div class="chat-container">
+            <div class="message-list" id="message-list">
+                <div class="message system">
+                    <div class="message-content">
+                        你好！我是你的虚拟伴侣。请允许我访问摄像头和麦克风，然后我们可以开始对话了。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 语音指示器 -->
+            <div class="voice-controls">
+                <div class="mic-indicator" id="mic-indicator">
+                    <span class="icon">🎤</span>
+                    <span class="status">未连接</span>
+                </div>
+                <button class="btn" id="btn-start">开始对话</button>
+                <button class="btn secondary" id="btn-stop">停止</button>
+            </div>
+        </div>
+
+        <!-- 配置面板 -->
+        <div class="settings-panel" id="settings-panel" style="display: none;">
+            <h3>设置</h3>
+            <label>语音速度:</label>
+            <input type="range" id="speech-rate" min="0.5" max="2" step="0.1" value="1">
+
+            <label>音调:</label>
+            <input type="range" id="speech-pitch" min="0.5" max="2" step="0.1" value="1">
+
+            <label>表情模式:</label>
+            <select id="emotion-mode">
+                <option value="auto">自动（根据对话内容）</option>
+                <option value="happy">开心</option>
+                <option value="sad">悲伤</option>
+                <option value="angry">生气</option>
+                <option value="normal">平静</option>
+            </select>
+
+            <button class="btn" id="btn-close-settings">关闭</button>
+        </div>
+
+        <button class="settings-toggle" id="btn-settings">⚙️ 设置</button>
+    </div>
+
+    <!-- 加载脚本 -->
+    <script src="js/live2d.js"></script>
+    <script src="js/voice.js"></script>
+    <script src="js/emotion.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/openclaw-connector.js"></script>
+    <script src="js/openclaw-http-bridge.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
